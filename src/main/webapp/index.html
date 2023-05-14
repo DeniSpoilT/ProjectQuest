@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+
+<html>
+<head>
+    <title>Представьтесь</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+</head>
+<body>
+<p>Добро пожаловать на борт нашего космического корабля! <br>
+    Я - искусственный интеллект, управляющий всеми системами и функциями нашего корабля. <br>
+    Ваша роль - капитан, который будет принимать решения и командовать экипажем во время нашего путешествия. </p>
+<h1>Представьтесь</h1>
+<div style=margin-left:20px;><label for="name">Введите ваше имя:</label><br></div>
+<input type="text" id="name" name="name" maxlength="25"><br>
+<div style=margin-left:20px;><small> (не более 25 символов)</small><br></div>
+<div style=margin-left:30px;><button id="submit">Представиться</button></div>
+<div id="greeting" style="display:none;"></div>
+<button id="forward" style="display:none;">Вперед</button>
+<script>
+    $(document).ready(function () {
+        $('#submit').click(function () {
+            let name = $('#name').val();
+            let text = 'Наша миссия - исследовать космические просторы, открывать новые миры и расширять границы нашего знания о Вселенной.<br>' +
+                ' Но наша миссия оказалась под угрозой. Наш корабль заблокирован инопланетным космическим кораблем, и мы не можем продолжать наше путешествие.<br>' +
+                'Я буду следить за состоянием корабля и предупреждать Вас о любых проблемах, которые могут возникнуть.<br>' +
+                ' Вы же будете принимать решения и давать команды, чтобы решить эти проблемы и освободить наш корабль.<br>' +
+                'Так что, ' + name + ', наша миссия находится в опасности. Давайте работать вместе, чтобы преодолеть эту угрозу и продолжить наше приключение в космосе!<br>';
+            $('#greeting').html(text).show();
+            $('#submit').hide();
+            $('#forward').show();
+            $.ajax({url:'http://localhost:8081/session',
+                type: 'post',
+                data:{name:name},
+                success:function (){console.log('the name was stored in the session.');
+            }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#forward").click(function () {
+            window.location.href = "http://localhost:8081/game";
+        })
+    });
+</script>
+</body>
+</html>
