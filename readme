@@ -2,8 +2,7 @@
 The final project of the third module JR.
 Technologies used:
 - Maven
-- Junit
-- Mockito
+- Junit & Mockito
 - Servlets & JSP
 - JQUERY & JS
 ***
